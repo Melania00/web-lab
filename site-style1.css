@@ -1,0 +1,245 @@
+/*dark background to support form theme*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+body{
+  font-family: 'PT Sans', sans-serif;
+  background:url(../my-project/project-films.html/CYF/css/CYF3.png);
+}
+.conteiner {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.fixe-menu {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.logo{
+  width: 50px;
+  margin-left: 15px;
+ 
+ }
+ .main-container {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 0px;
+ }
+ .main-menu {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 0px;
+  padding:0;
+  margin-left:0;
+ }
+ .main-menu:before{
+  content: '';
+  display: block;
+  height:50px;
+  width:100%;
+  background: #000;
+  position: absolute;
+  left:0;
+  z-index: -1;
+ }
+ .main-menu ul{
+  margin:0;
+  padding:0;
+  list-style: none;
+  margin-left: 0px;
+  
+ 
+ }
+ .main-menu ul li{
+  margin-left: 0px;
+  float: left;
+ }
+ .main-menu ul li a{
+  color:#fff;
+  display: block;
+  height:50px;
+  padding: 0 45px;
+  text-decoration: none;
+  line-height:50px;
+  font-size:20px;
+  transition: all 0.3s linear;
+ 
+ }
+ .main-menu ul li a.size{
+	display: flex;
+  }
+.main-menu ul li a:hover{
+	background:green;
+	font-size: 20.5px;
+	color: #000;
+	text-transform:capitalize;
+}
+.size {
+	width: 5px;
+	height: 5px;
+  }
+  .color {
+    background: green;
+    margin: 0 auto;
+  }
+  .registration {
+      width: 33px;
+      height: 30px;
+      padding: 10px;
+      padding: 10px;
+  }
+.wrapper {
+ margin-left:400px;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+/*sass variables used*/
+/*
+$full:100%;
+$auto:0 auto;
+$align:center;
+
+@mixin disable{
+  outline:none;
+  border:none;
+}
+
+@mixin easeme{
+  -webkit-transition:1s ease;
+  -moz-transition:1s ease;
+  -o-transition:1s ease;
+  -ms-transition:1s ease;
+  transition:1s ease;
+}*/
+
+/*site container*/
+.wrapper{
+  width:420px;
+  margin: auto;
+}
+
+h1{
+  text-align: center;
+  padding:30px 0px 0px 0px;
+  /*font:25px Oswald;*/
+  color:#FFF;
+  text-transform:uppercase;
+  text-shadow:#000 0px 1px 5px;
+  margin:0px;
+}
+
+p{
+  font:13px Open Sans;
+  color:#6E6E6E;
+  text-shadow:#000 0px 1px 5px;
+  margin-bottom:30px;
+}
+
+.form{
+  width: 100%;
+}
+
+input[type="text"],input[type="email"]{
+  width:98%;
+  padding:15px 0px 15px 8px;
+  border-radius:5px;
+  box-shadow:inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);
+	background:rgba(0,0,0,0.2);
+  border:1px solid rgba(0,0,0,1);
+  margin-bottom:10px;
+  color:#6E6E6E;
+  text-shadow:#000 0px 1px 5px;
+}
+
+input[type="submit"]{
+  width:100%;
+  padding:15px;
+  border-radius:5px;
+  background-color: green;
+  /*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
+  background-image: -webkit-linear-gradient(#28D2DE 0%, #1A878F 100%);
+  background-image: -moz-linear-gradient(#28D2DE 0%, #1A878F 100%);
+  background-image: -o-linear-gradient(#28D2DE 0%, #1A878F 100%);
+  background-image: linear-gradient(#28D2DE 0%, #1A878F 100%);*/
+  color:#FFF;
+  text-transform:uppercase;
+  text-shadow:#000 0px 1px 5px;
+  border:1px solid #000;
+  opacity:0.7;
+	-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+	box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+  border-top:1px solid rgba(255,255,255,0.8)!important;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.2)));
+}
+
+input:focus{
+  box-shadow:inset 4px 6px 10px -4px rgba(0,0,0,0.7), 0 1px 1px -1px rgba(255,255,255,0.3);
+  background:rgba(0,0,0,0.3);
+}
+
+input[type="submit"]:hover{
+  opacity:1;
+  cursor:pointer;
+}
+
+.name-help,.email-help,.password-help{
+  display:none;
+  padding:0px;
+  margin:0px 0px 15px 0px;
+}
+
+.optimize{
+  position:fixed;
+  right:3%;
+  top:0px;
+}
+.submit{
+  background: green;
+}
+
+
+
+/* Footer */
+.page-footer {
+  width: 100%;
+  margin-top: 340px;
+  min-height: 200px;
+  background: #272727;
+  color: white;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.footer-info a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.footer-cyf {
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-green-info {
+  background: #5e963f;
+  text-align: center;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 18px;
+}
