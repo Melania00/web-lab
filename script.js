@@ -1,156 +1,134 @@
-let fridges = [];
-let searchFridges = [];
+const appState = {
+  fridges: [
+    {
+      id: Date.now(),
+      name: "Fridge 1",
+      description: "awesome fridge",
+      brand: "LG",
+      price: 1234,
+    },
+    {
+      id: Date.now()+1,
+      name: "Fridge 2",
+      description: "awesome fridge 2",
+      brand: "Samsung",
+      price: 123,
+    }
+  ],
+  showSearchResults: false,
+  searchResults: [],
 
-const saveFridge = () => {
-    const name = document.getElementById("name").value;
-    const description = document.getElementById("description").value;
-    const price = document.getElementById("price").value;
-    const type = document.getElementById("type").value;
-    const itemId = Date.now()
-    const fridgesInfo = document.createElement("div");
-    fridgesInfo.classList.add("fridges-info");
-    fridgesInfo.id = itemId.toString;
+  editFridge: null,
 
-    
-fridgesInfo.innerHTML = `
-  <h3>${name}</h3>
-  <p><strong>Description:</strong> ${description}</p>
-  <p><strong>Price:</strong> ${price}</p>
-  <p><strong>Type:</strong> ${type}</p>
-  <button type="button" class="deleteButton" onclick="deleteFridge(this.parentElement)">Delete</button>
-  <button type="button" class="editButton" onclick="editFridge(${fridges.length - 1})">Edit</button>
-`;
-  
-    
-    document.getElementById("fridgesList").appendChild(fridgesInfo);
+  searchInput: "",
 
-    fridges.push({
-        id: itemId,
-        name: name,
-        description: description,
-        price: price,
-        type: type
-    });
-    
-    console.log(fridges)
-
+  newFridgeForm: {
+    name: "",
+    description: "",
+    price: 0,
+    brand: "",
+  }
 }
 
-const findFridgesByBrand = () => { 
-const searchBrand = document.getElementById("searchBrand");
-const cancelFindFridgesButton = document.getElementById("cancelFindButton");
+function saveFridge() {
+  let fridge = appState.editFridge;
+  if (!appState.editFridge) {
+    fridge = {
+      id: Date.now()
+    }
+  }
 
-findFridges.addEventListener("click", () => {
-  searchBrand = document.getElementById("searchBrand").value;
-  const foundFridges = fridges.filter(fridge => {
-      return fridge.type.toLowerCase().includes(searchBrand.toLowerCase());
-  });
+  fridge.name = document.getElementById("name").value;
+  fridge.description = document.getElementById("description").value;
+  fridge.price = parseInt(document.getElementById("price").value);
+  fridge.brand = document.getElementById("brand").value;
 
-  renderItemsList(foundFridges, onEditItem, onRemoveItem);
-});
+  if (appState.editFridge) {
+    appState.editFridge = null;
+  } else {
+    appState.fridges.push(fridge);
+  }
 
-cancelFindFridgesButton.addEventListener("click", () => {
-  renderItemsList(fridges, onEditItem, onRemoveItem);
+  render()
+}
 
-  document.getElementById("searchBrand").value = "";
-});
-};
+function render() {
+  const fridgesContainer = document.getElementById("fridgesList")
+  fridgesContainer.innerHTML = '';
 
-const sortFridgesByPriceButton = document.getElementById("sortPriceButton")
-function sortFridgesByPrice(){
-const sortFridgesByPrice = () => {
-    
-    searchFridges = fridges.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-    console.log(searchFridges)
-    fridgesList = document.getElementById("fridgesList")
-    console.log(fridgesList)
-    fridgesList.innerHTML = "";
-    console.log(fridgesList)
+  let displayList = appState.fridges;
+  if (appState.showSearchResults) {
+    displayList = appState.searchResults;
+  }
 
-    searchFridges.forEach(element => {
+  const formTitle = document.getElementById("fridgeFormTitle")
+  if (appState.editFridge !== null) {
+    formTitle.innerHTML = `Edit Fridge`
+    document.getElementById("name").value = appState.editFridge.name;
+    document.getElementById("description").value = appState.editFridge.description;
+    document.getElementById("price").value = appState.editFridge.price;
+    document.getElementById("brand").value = appState.editFridge.brand;
+  } else {
+    formTitle.innerHTML = `New Fridge`
+    document.getElementById("name").value = '';
+    document.getElementById("description").value = '';
+    document.getElementById("price").value = 0;
+    document.getElementById("brand").value = null;
+  }
 
-
-        const fridgesInfo = document.createElement("div");
-        fridgesInfo.classList.add("fridges-info");
-    
-        
-    fridgesInfo.innerHTML = `<div id="${itemId}">
-    <h3>${name}</h3>
-    <p><strong>Description:</strong> ${description}</p>
-    <p><strong>Price:</strong> ${price}</p>
-    <p><strong>Type:</strong> ${type}</p>
-    <button type="button" class="deleteButton" onclick="deleteFridge(this.parentElement)">Delete</button>
-    <button type="button" class="editButton" onclick="editFridge(${fridges.length - 1})">Edit</button>
+  displayList.forEach((fridge) => {
+    const fridgeDiv = document.createElement("div");
+    fridgeDiv.classList.add("fridges-info");
+    fridgeDiv.id = fridge.id;
+    fridgeDiv.innerHTML = `
+      <h3>${fridge.name}</h3>
+      <p><strong>Description:</strong> ${fridge.description}</p>
+      <p><strong>Price:</strong> ${fridge.price}</p>
+      <p><strong>Type:</strong> ${fridge.brand}</p>
+      <button type="button" class="deleteButton" onclick="deleteFridge(${fridge.id})">Delete</button>
+      <button type="button" class="editButton" onclick="editFridge(${fridge.id})">Edit</button>
     `;
-      
-        
-        document.getElementById("fridgesList").appendChild(fridgesInfo);
-    
-        fridges.push({
-            id: itemId,
-            name: name,
-            description: description,
-            price: price,
-            type: type
-        });
-       
-    });
-    sortFridgesByPrice(fridges, onEditItem, onRemoveItem);
-}}
+    fridgesContainer.appendChild(fridgeDiv);
+  })
 
-function deleteFridge(element) {
-element.remove();
+  const totalPriceDiv = document.getElementById("totalPrice")
+  let sum = 0;
+  for (let i = 0; i < appState.fridges.length; i++) {
+    sum += appState.fridges[i].price;
+  }
+
+  totalPriceDiv.innerHTML = `Total price of all available fridges: ${sum}`;
 }
 
-function toggleAside() {
-const fridgeAside = document.getElementById("fridgeAside");
-fridgeAside.classList.toggle("hidden");
+function editFridge(id) {
+  appState.editFridge = appState.fridges.find(f => f.id === id);
+  render();
 }
 
-function editFridge(element) {
-const nameElement = element.querySelector("h3");
-const descriptionElement = element.querySelector("p:nth-child(2)");
-const priceElement = element.querySelector("p:nth-child(3)");
-const typeElement = element.querySelector("p:nth-child(4)");
+function deleteFridge(id) {
+  const idx = appState.fridges.findIndex(f => f.id === id);
+  appState.fridges.splice(idx, 1)
 
-const newName = prompt("Edit Name:", nameElement.textContent);
-const newDescription = prompt("Edit Description:", descriptionElement.textContent.replace("Description: ", ""));
-const newPrice = prompt("Edit Price:", priceElement.textContent.replace("Price: ", ""));
-const newType = prompt("Edit Type:", typeElement.textContent.replace("Type: ", ""));
-
-if (newName !== null) {
-  nameElement.textContent = newName;
+  render();
 }
 
-if (newDescription !== null) {
-  descriptionElement.textContent = "Description: " + newDescription;
+function sortFridgesByPrice() {
+  appState.fridges.sort((a, b) => a.price - b.price);
+  render();
 }
 
-if (newPrice !== null) {
-  priceElement.textContent = "Price: " + newPrice;
+function applyFilters() {
+  const brandFilter = document.getElementById("searchBrand").value;
+
+  appState.showSearchResults = true;
+  appState.searchResults = appState.fridges.filter(f => f.brand === brandFilter);
+
+  render();
 }
 
-if (newType !== null) {
-  typeElement.textContent = "Type: " + newType;
-}};
-
-
-function displayFridges() {
-  const fridgesList = document.getElementById("fridgesList");
-  fridgesList.innerHTML = '';
-
-  fridges.forEach((fridge) => {
-      const fridgesInfo = document.createElement('div');
-      fridgesInfo.id = fridge.id;
-      fridgesInfo.innerHTML = `
-          <h3>${fridge.name}</h3>
-          <p><strong>Description:</strong> ${fridge.description}</p>
-          <p><strong>Price:</strong> ${fridge.price}</p>
-          <p><strong>Type:</strong> ${fridge.type}</p>
-          <button type="button" class="deleteButton" onclick="deleteFridge(this.parentElement)">Delete</button>
-          <button type="button" class="editButton" onclick="editFridge(this.parentElement)">Edit</button>
-      `;
-
-      fridgesList.appendChild(fridgesInfo);
-  });
+function resetFilters() {
+  appState.showSearchResults = false;
+  render();
 }
+
+render();
