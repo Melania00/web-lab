@@ -32,7 +32,7 @@
             <option value="Gorenje">Gorenje</option>
           </select>
 
-          <button type="button" onclick="saveFridge()">Save</button>
+          <button type="button" class="save-button" onclick="saveFridge()">Save</button>
         </form>
 
         <div class="findFridges">
@@ -59,6 +59,12 @@
           <button id="sortPriceButton" type="button" onclick="sortFridgesByPrice()">
             Sort by Price
           </button>
+        </div>
+        <div class="sortfridges">
+          <button id="totalPriceButton" type="button" onclick="calculateTotal()">
+            Calculate Total
+          </button>
+          <p><strong>Total Price:</strong> <span id="totalPrice"><span/></p>
         </div>
       </aside>
       <main>
