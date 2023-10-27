@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <button class="toggle-Button" id="toggleButton" onclick="toggleAside()">
+        Toggle Aside
+      </button>
+      <aside id="fridgeAside">
+        <form id="fridgeForm">
+          <h2 id="fridgeFormTitle">Add New Fridge</h2>
+          <label for="name">Name:</label>
+          <input type="text" id="name" />
+
+          <label for="description">Description:</label>
+          <textarea id="description"></textarea>
+          <label for="price">Price:</label>
+          <input type="number" min="0" id="price" />
+
+          <label for="type">Type:</label>
+          <select id="brand">
+            <option value="" disabled selected>Select fridge brand</option>
+            <option value="Samsung">Samsung</option>
+            <option value="LG">LG</option>
+            <option value="Bosch">Bosch</option>
+            <option value="Gorenje">Gorenje</option>
+          </select>
+
+          <button type="button" class="save-button" onclick="saveFridge()">Save</button>
+        </form>
+
+        <div class="findFridges">
+          <h4>Find fridges</h4>
+          <input id="searchBrand" type="text" class="form-control" />
+          <button
+            id="findButton"
+            type="button"
+            class="find-button"
+            onclick="applyFilters()"
+          >
+            Find
+          </button>
+          <button
+            id="cancelFindButton"
+            type="button"
+            class="cancel-find-button"
+            onclick="resetFilters()"
+          >
+            Cancel
+          </button>
+        </div>
+        <div class="sortfridges">
+          <button id="sortPriceButton" type="button" onclick="sortFridgesByPrice()">
+            Sort by Price
+          </button>
+        </div>
+        <div class="sortfridges">
+          <button id="totalPriceButton" type="button" onclick="calculateTotal()">
+            Calculate Total
+          </button>
+          <p><strong>Total Price:</strong> <span id="totalPrice"><span/></p>
+        </div>
+      </aside>
+      <main>
+        <h2>Fridges List</h2>
+        <div id="totalPrice"></div>
+        <div class="fridges-list" id="fridgesList"></div>
+        <div class="editForm"></div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"></script>
+  </body>
+</html>
