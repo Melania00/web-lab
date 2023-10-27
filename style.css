@@ -1,145 +1,153 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 50px;
-  }
-  
-  aside {
-    flex: 0.5;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  main {
-    flex: 2;
-    padding: 20px;
-  }
-  
-  h2 {
-    margin-top: 0;
-    margin-left: 10px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  textarea,
-  input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  button {
-    background-color: #4595a0;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #4595a0;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
 
-  .sortfridges {
-    margin-top: 10px;
-    margin-left: 7px;
-  }
-  
- .fridges-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-  
-  .fridges-info {
-    width: 180px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .fridges-info:last-child {
-    margin-right: 0;
-    margin-left: 10px;
-  }
-  
-  .fridges-info h3 {
-    margin-top: 0;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .findFridges {
-    margin-left: 10px;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 50px;
+}
 
-  .toggle-Button {
-    margin-bottom: 10px;
-    position: absolute;
-    top: 10px;
-    left: 30px;
-  }
-  .deleteButton {
-    background-color: red;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
-    background-color: #f9f9f9;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 5px;
-    width: 300px;
-  }
-  
-  .close {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover {
-    color: #555;
-  }
-  
-  .deleteButton:hover {
-    background-color: darkred;
-  }
+aside {
+  flex: 0.5;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  flex: 2;
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #4595a0;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4595a0;
+}
+
+.sortfridges {
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+.fridges-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.fridges-info {
+  width: 180px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.fridges-info:last-child {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.fridges-info h3 {
+  margin-top: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.findFridges {
+  margin-left: 10px;
+}
+
+.toggle-Button {
+  margin-bottom: 10px;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+.deleteButton {
+  background-color: red;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #f9f9f9;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #555;
+}
+
+.deleteButton:hover {
+  background-color: darkred;
+}
+
+.find-button {
+  margin-bottom: 5px;
+}
+
+.save-button {
+  margin-top: 5px;
+}
