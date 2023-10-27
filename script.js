@@ -5,18 +5,19 @@ const appState = {
       name: "Fridge 1",
       description: "awesome fridge",
       brand: "LG",
-      price: 1234,
+      price: 1234
     },
     {
-      id: Date.now()+1,
+      id: Date.now() + 1,
       name: "Fridge 2",
       description: "awesome fridge 2",
       brand: "Samsung",
-      price: 123,
+      price: 123
     }
   ],
-  showSearchResults: false,
-  searchResults: [],
+  brandFilter: "",
+  applySorting: false,
+  displayList: [],
 
   editFridge: null,
 
@@ -26,22 +27,36 @@ const appState = {
     name: "",
     description: "",
     price: 0,
-    brand: "",
-  }
-}
+    brand: ""
+  },
 
-function saveFridge() {
+  totalPrice: 0
+};
+
+window.saveFridge = function () {
   let fridge = appState.editFridge;
+
+  let name = document.getElementById("name").value;
+  let description = document.getElementById("description").value;
+  let price = parseInt(document.getElementById("price").value);
+  let brand = document.getElementById("brand").value;
+
+  // Check if all fields are filled
+  if (!name || !description || isNaN(price) || !brand) {
+    alert("Please fill in all fields");
+    return;
+  }
+
   if (!appState.editFridge) {
     fridge = {
       id: Date.now()
-    }
+    };
   }
 
-  fridge.name = document.getElementById("name").value;
-  fridge.description = document.getElementById("description").value;
-  fridge.price = parseInt(document.getElementById("price").value);
-  fridge.brand = document.getElementById("brand").value;
+  fridge.name = name;
+  fridge.description = description;
+  fridge.price = price;
+  fridge.brand = brand;
 
   if (appState.editFridge) {
     appState.editFridge = null;
@@ -49,34 +64,55 @@ function saveFridge() {
     appState.fridges.push(fridge);
   }
 
-  render()
+  updateDisplayList();
+  render();
+  resetForm();
+};
+
+function resetForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("brand").value = "";
+}
+
+function updateDisplayList() {
+  appState.displayList = [...appState.fridges];
+
+  if (appState.brandFilter) {
+    appState.displayList = appState.fridges.filter((f) =>
+      f.brand.toLowerCase().includes(appState.brandFilter.toLocaleLowerCase())
+    );
+  }
+
+  if (appState.applySorting) {
+    appState.displayList = appState.displayList.sort(
+      (a, b) => a.price - b.price
+    );
+  }
 }
 
 function render() {
-  const fridgesContainer = document.getElementById("fridgesList")
-  fridgesContainer.innerHTML = '';
+  const fridgesContainer = document.getElementById("fridgesList");
+  fridgesContainer.innerHTML = "";
 
-  let displayList = appState.fridges;
-  if (appState.showSearchResults) {
-    displayList = appState.searchResults;
-  }
-
-  const formTitle = document.getElementById("fridgeFormTitle")
+  const formTitle = document.getElementById("fridgeFormTitle");
   if (appState.editFridge !== null) {
-    formTitle.innerHTML = `Edit Fridge`
+    formTitle.innerHTML = "Edit Fridge";
     document.getElementById("name").value = appState.editFridge.name;
-    document.getElementById("description").value = appState.editFridge.description;
+    document.getElementById("description").value =
+      appState.editFridge.description;
     document.getElementById("price").value = appState.editFridge.price;
     document.getElementById("brand").value = appState.editFridge.brand;
   } else {
-    formTitle.innerHTML = `New Fridge`
-    document.getElementById("name").value = '';
-    document.getElementById("description").value = '';
+    formTitle.innerHTML = "New Fridge";
+    document.getElementById("name").value = "";
+    document.getElementById("description").value = "";
     document.getElementById("price").value = 0;
     document.getElementById("brand").value = null;
   }
 
-  displayList.forEach((fridge) => {
+  appState.displayList.forEach((fridge) => {
     const fridgeDiv = document.createElement("div");
     fridgeDiv.classList.add("fridges-info");
     fridgeDiv.id = fridge.id;
@@ -89,46 +125,43 @@ function render() {
       <button type="button" class="editButton" onclick="editFridge(${fridge.id})">Edit</button>
     `;
     fridgesContainer.appendChild(fridgeDiv);
-  })
-
-  const totalPriceDiv = document.getElementById("totalPrice")
-  let sum = 0;
-  for (let i = 0; i < appState.fridges.length; i++) {
-    sum += appState.fridges[i].price;
-  }
-
-  totalPriceDiv.innerHTML = `Total price of all available fridges: ${sum}`;
+  });
 }
 
-function editFridge(id) {
-  appState.editFridge = appState.fridges.find(f => f.id === id);
+window.editFridge = function (id) {
+  appState.editFridge = appState.fridges.find((f) => f.id === id);
+  updateDisplayList();
   render();
-}
+};
 
-function deleteFridge(id) {
-  const idx = appState.fridges.findIndex(f => f.id === id);
-  appState.fridges.splice(idx, 1)
-
+window.deleteFridge = function (id) {
+  appState.fridges = appState.fridges.filter((f) => f.id !== id);
+  updateDisplayList();
   render();
-}
+};
 
-function sortFridgesByPrice() {
-  appState.fridges.sort((a, b) => a.price - b.price);
+window.sortFridgesByPrice = function () {
+  appState.applySorting = !appState.applySorting;
+  updateDisplayList();
   render();
-}
+};
 
-function applyFilters() {
-  const brandFilter = document.getElementById("searchBrand").value;
-
-  appState.showSearchResults = true;
-  appState.searchResults = appState.fridges.filter(f => f.brand === brandFilter);
-
+window.applyFilters = function () {
+  appState.brandFilter = document.getElementById("searchBrand").value;
+  updateDisplayList();
   render();
-}
+};
 
-function resetFilters() {
-  appState.showSearchResults = false;
+window.resetFilters = function () {
+  document.getElementById("searchBrand").value = appState.brandFilter = "";
+  updateDisplayList();
   render();
-}
+};
 
+window.calculateTotal = function () {
+  appState.totalPrice = appState.displayList.reduce((t, f) => f.price + t, 0);
+  document.getElementById("totalPrice").innerText = appState.totalPrice;
+};
+
+updateDisplayList();
 render();
