@@ -37,12 +37,16 @@ label {
 
 input[type="text"],
 textarea,
-input[type="number"] {
-  width: 100%;
+input[type="number"], select {
+  width: 90%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+select {
+  width: 98%;
 }
 
 textarea {
