@@ -1,20 +1,5 @@
 const appState = {
-  fridges: [
-    {
-      id: Date.now(),
-      name: "Fridge 1",
-      description: "awesome fridge",
-      brand: "LG",
-      price: 1234
-    },
-    {
-      id: Date.now() + 1,
-      name: "Fridge 2",
-      description: "awesome fridge 2",
-      brand: "Samsung",
-      price: 123
-    }
-  ],
+  fridges: [],
   brandFilter: "",
   applySorting: false,
   displayList: [],
@@ -23,50 +8,7 @@ const appState = {
 
   searchInput: "",
 
-  newFridgeForm: {
-    name: "",
-    description: "",
-    price: 0,
-    brand: ""
-  },
-
   totalPrice: 0
-};
-
-window.saveFridge = function () {
-  let fridge = appState.editFridge;
-
-  let name = document.getElementById("name").value;
-  let description = document.getElementById("description").value;
-  let price = parseInt(document.getElementById("price").value);
-  let brand = document.getElementById("brand").value;
-
-  // Check if all fields are filled
-  if (!name || !description || isNaN(price) || !brand) {
-    alert("Please fill in all fields");
-    return;
-  }
-
-  if (!appState.editFridge) {
-    fridge = {
-      id: Date.now()
-    };
-  }
-
-  fridge.name = name;
-  fridge.description = description;
-  fridge.price = price;
-  fridge.brand = brand;
-
-  if (appState.editFridge) {
-    appState.editFridge = null;
-  } else {
-    appState.fridges.push(fridge);
-  }
-
-  updateDisplayList();
-  render();
-  resetForm();
 };
 
 function resetForm() {
@@ -128,18 +70,6 @@ function render() {
   });
 }
 
-window.editFridge = function (id) {
-  appState.editFridge = appState.fridges.find((f) => f.id === id);
-  updateDisplayList();
-  render();
-};
-
-window.deleteFridge = function (id) {
-  appState.fridges = appState.fridges.filter((f) => f.id !== id);
-  updateDisplayList();
-  render();
-};
-
 window.sortFridgesByPrice = function () {
   appState.applySorting = !appState.applySorting;
   updateDisplayList();
@@ -165,3 +95,96 @@ window.calculateTotal = function () {
 
 updateDisplayList();
 render();
+
+// Helper function to fetch fridges from the server
+function fetchFridges() {
+  fetch('/api/fridges')
+    .then(response => response.json())
+    .then(data => {
+      appState.fridges = data;
+      updateDisplayList();
+      render();
+    })
+    .catch(error => console.error('Error fetching fridges:', error));
+}
+
+window.saveFridge = function () {
+  let fridge = appState.editFridge;
+
+  let name = document.getElementById("name").value;
+  let description = document.getElementById("description").value;
+  let price = parseFloat(document.getElementById("price").value);
+  let brand = document.getElementById("brand").value;
+
+  // Check if all fields are filled
+  if (!name || !description || isNaN(price) || !brand) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  const fridgeData = { name, description, price, brand };
+
+  if (fridge) {
+    // Update an existing fridge
+    fetch(`/api/fridges/${fridge.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fridgeData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      resetForm();
+      fetchFridges();
+      appState.editFridge = null;
+    })
+    .catch(error => console.error('Error updating fridge:', error));
+  } else {
+    // Create a new fridge
+    fetch('/api/fridges', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fridgeData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      fetchFridges();
+    })
+    .catch(error => console.error('Error creating fridge:', error));
+  }
+
+  resetForm();
+};
+
+window.deleteFridge = function (id) {
+  fetch(`/api/fridges/${id}`, {
+    method: 'DELETE',
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    fetchFridges();
+  })
+  .catch(error => console.error('Error deleting fridge:', error));
+};
+
+window.editFridge = function (id) {
+  const fridge = appState.fridges.find(f => f.id === id);
+  appState.editFridge = fridge;
+  document.getElementById("name").value = fridge.name;
+  document.getElementById("description").value = fridge.description;
+  document.getElementById("price").value = fridge.price;
+  document.getElementById("brand").value = fridge.brand;
+  render();
+};
+
+// Call fetchFridges on initial load to populate the list
+fetchFridges();
