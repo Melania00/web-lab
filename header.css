@@ -1,0 +1,298 @@
+@import url('general.css');
+@import url('footer.css');
+@import url('about_us.css');
+@import url('clients.css');
+@import url('how_to_apply.css');
+
+.header {
+   padding-top: 25px;
+   height: 1184px;
+   background: url("D:\\web_labs\\second-lab\\images\\mainBackground.png") no-repeat;
+   background-size: 1285px 940px;
+   background-position: top center;
+   max-width: 1600px;
+   margin: 0 auto;
+}
+
+.header__upper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   max-width: 1600px;
+   flex-wrap: wrap;
+   padding-bottom: 80px;
+}
+
+.logo a {
+   text-decoration: none;
+   color: #FFF;
+}
+
+.logo {
+   color: #FFF;
+   font-family: 'DM Serif Display', serif;
+   font-size: 32px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 100%;
+   background: url("D:\\web_labs\\second-lab\\images\\logo.png") no-repeat;
+   background-size: 47px 50px;
+   background-position: left;
+   padding: 25px;
+   padding-left: 70px;
+   padding-right: 50px;
+   margin-right: 100px;
+}
+
+.header__navigation {
+   margin-right: 180px;
+}
+
+.header__button:hover {
+   color: rgb(255, 223, 119);   
+}
+
+.header__button {
+   color: #FFF;
+   text-align: center;
+   font-family: 'Rubik', sans-serif;
+   font-size: 16px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: normal;
+   letter-spacing: 0.8px;
+   text-transform: uppercase;
+   text-decoration: none;
+   line-height: 60px;
+}
+
+.header__button--last {
+   color: #FFF;
+   text-align: center;
+   font-family: 'Rubik', sans-serif;
+   font-size: 16px;
+   font-style: normal;
+   font-weight: 700;
+   letter-spacing: 0.8px;
+   text-transform: uppercase;
+   text-decoration: none;
+   display: inline-block;
+   width: 158px;
+   height: 60px;
+   background-color: red;
+   line-height: 60px;
+   border-radius: 5px;
+}
+
+ul {
+   list-style: none;
+   display: flex;
+   padding: 0;
+}
+
+li:first-child {
+   margin-right: 97px;
+}
+
+li:nth-child(2) {
+   margin-right: 104px;
+}
+
+li:nth-child(3) {
+   margin-right: 76px;
+}
+
+.header__center {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.header__center__text {
+   max-width: 741px;
+   height: 300px;
+   color: #FFF;
+   font-family: 'DM Serif Display', serif;
+   font-size: 100px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 100%;
+}
+
+.header__center__space {
+   width: 412px;
+}
+
+.header__lower {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   padding-top: 60px;
+}
+
+.header__lower__button {
+   color: #FFF;
+   text-align: center;
+   font-family: 'Rubik', sans-serif;
+   font-size: 16px;
+   font-style: normal;
+   font-weight: 700;
+   letter-spacing: 0.8px;
+   text-transform: uppercase;
+   text-decoration: none;
+   display: inline-block;
+   width: 158px;
+   height: 60px;
+   background-color: red;
+   line-height: 60px;
+   border-radius: 5px;
+   background-image: url("D:\\web_labs\\second-lab\\images\\arrow.png");
+   background-repeat: no-repeat;
+   background-size: 29.5px 12.35px;
+   background-position: calc(100% - 23px) center;
+   padding-right: 60px;
+   transition: transform 0.4s linear(0 0%, 0 2.27%, 0.02 4.53%, 0.04 6.8%, 0.06 9.07%, 0.1 11.33%, 0.14 13.6%, 0.25 18.15%, 0.39 22.7%, 
+      0.56 27.25%, 0.77 31.8%, 1.04 34.59%, 0.89 40.9%, 0.85 43.18%, 0.81 45.45%, 0.79 47.72%, 0.77 50%, 0.75 52.27%, 0.75 54.55%, 0.75 56.82%, 
+      0.77 59.1%, 0.79 61.38%, 0.81 63.65%, 0.85 65.93%, 0.89 68.2%, 1.04 72.7%, 0.97 74.98%, 0.95 77.25%, 0.94 79.53%, 0.94 81.8%, 0.94 84.08%, 
+      0.95 86.35%, 0.97 88.63%, 1 90.9%, 0.99 93.18%, 0.98 95.45%, 0.99 97.73%, 1 100%);
+}
+
+.header__lower_space {
+   width: 933px;
+}
+
+.header__truck {
+   max-width: 610px;
+   height: 394.55px;
+   background-repeat: no-repeat;
+   background-size: contain;
+   margin-top: 54px;
+}
+
+.header-burger__menu {
+   display: none;
+   background: none;
+   border: none;
+   cursor: pointer;
+}
+
+.bar {
+   width: 40px;
+   height: 4px;
+   background-color: #ffffff;
+   margin: 6px 0;
+}
+
+.header__button--last:hover {
+   background-color: rgb(216, 1, 1);
+}
+
+.header__lower__button:hover {
+   transform: scale(1.1);
+}
+
+@media (max-width: 1150px) and (min-width: 760px) {
+   .header__navigation {
+      margin-right: 0px;
+   }
+
+   .header__upper .logo {
+      margin-right: 0px;
+   }
+}
+
+@media (max-width: 759px) and (min-width: 0px) {
+   .header__navigation {
+      margin-right: 0px;
+   }
+
+   .header__upper .logo {
+      margin-right: 0px;
+   }
+
+   .header__center__text {
+      font-size: 80px;
+      margin-left: 50px;
+   }
+}
+
+@media (max-width: 650px) {
+   .header-burger__menu {
+      display: block;
+   }
+
+   .header__navigation ul {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: rgba(116, 33, 0, 0.6);
+      list-style: none;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.45);
+   }
+
+   .header__navigation ul.active {
+      display: block;
+      margin-right: 0px;
+      margin-top: 50px;
+      width: 90%;
+   }
+
+   .header__center__text {
+      font-size: 42px;
+      margin-left: 23px;
+      height: 250px;
+   }
+
+   .header__upper {
+      padding-bottom: 40px;
+   }
+
+   .header__lower {
+      padding-top: 20px;
+   }
+
+   .header {
+      height: 940px;
+      background-position: top left;
+   }
+
+   .header__truck {
+      margin-top: 150px;
+   }
+
+   .aboutus__text__title {
+      margin-top: 15px;
+   }
+
+   li:first-child {
+      display: flex;
+      justify-content: center;
+      margin-right: 0;
+   }
+   
+   li:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      margin-right: 0;
+
+   }
+   
+   li:nth-child(3) {
+      display: flex;
+      justify-content: center;
+      margin-right: 0;
+
+   }
+   li:nth-child(4) {
+      display: flex;
+      justify-content: center;
+      margin-right: 0;
+   }
+
+   .header__button {
+      width: 100%;
+   }
+}

@@ -1,0 +1,84 @@
+.foot {
+    height: 205px;
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    background: #F16353;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 184px;
+    padding: 15px 0;
+ }
+ 
+ footer {
+    width: 100%;
+ }
+ 
+ .foot__left {
+    color: #F8F9FA;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 235px;
+ }
+ 
+ /* .footer__image {
+    margin-left: 100px;
+    
+ } */
+ 
+ .foot__center {
+    color: #FFF;
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    background: url('"D:\web_labs\second-lab\images\logo.png"') no-repeat;
+    background-size: 47px 50px;
+    background-position: left;
+    padding: 25px;
+    padding-left: 70px;
+    margin-left: 47px;
+ }
+ 
+ .foot__center a {
+    text-decoration: none;
+    color: #FFF;
+ }
+ 
+ .footer__image {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 192px;
+    margin-left: 192px;
+ }
+ 
+ .footer__image a {
+    padding-right: 20px;
+ }
+ 
+ @media (max-width: 1150px) and (min-width: 0px) {
+    .foot {
+       flex-direction: column;
+       justify-content: space-between;
+    }
+ 
+    .foot__left {
+       margin-left: 0px;
+       margin-right: 0px;
+    }
+ 
+    .foot__center {
+       margin-left: 0px;
+    }
+ 
+    .footer__image {
+       margin-right: 0px;
+       margin-left: 0px;
+    }
+ }
