@@ -1,0 +1,150 @@
+.lower__aboutus__text {
+    color: #EE4D47;
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 2.4px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 13px;
+ }
+ 
+ .lower__aboutus__client--text {
+    color: #402B2B;
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+ }
+ 
+ .lower__aboutus_client--cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+ }
+ 
+ .card1 {
+    width: 420px;
+    height: 360px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 20px 40px 0px rgba(238, 76, 71, 0.267);
+    margin: 0 7px;
+    margin-bottom: 20px;
+ }
+ 
+ .card2 {
+    width: 420px;
+    height: 360px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 20px 40px 0px rgba(238, 76, 71, 0.267);
+    margin: 0 7px;
+    margin-bottom: 20px;
+ }
+ 
+ .card3 {
+    width: 420px;
+    height: 360px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 20px 40px 0px rgba(238, 76, 71, 0.267);
+    margin-bottom: 20px;
+    margin: 0 7px;
+ }
+ 
+ .card__upper {
+    color: #402B2B;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 30px;
+    max-width: 320px;
+    margin: 60px 52px 54px 48px;
+ }
+ 
+ .card__lower {
+    color: #402B2B;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+    padding: 25px;
+    margin-left: 45px;
+    margin-right: 117px;
+ }
+ 
+ .card1,
+ .card2,
+ .card3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.4s;
+    }
+ 
+ .card1 .card__lower {
+    background: url("D:\web_labs\second-lab\images\man1.png") no-repeat;
+    background-size: 60px 60px;
+    background-position: left;
+    margin-top: 18px;
+ }
+ 
+ .card2 .card__lower {
+    background: url("D:\web_labs\second-lab\images\man2.png") no-repeat;
+    background-size: 60px 60px;
+    background-position: left;
+    margin-top: -13px;
+ }
+ 
+ .card3 .card__lower {
+    background: url("D:\web_labs\second-lab\images\man3.png") no-repeat;
+    background-size: 60px 60px;
+    background-position: left;
+    margin-top: -30px;
+    padding-bottom: -5px;
+ }
+ 
+ .card3 .card__upper {
+    margin-bottom: 109px;
+ 
+ }
+ 
+ .card1:hover, .card2:hover, .card3:hover {
+    box-shadow: 0px 20px 40px 0px rgba(238, 76, 71, 0.377);
+    transform: scale(1.008);
+ }
+ 
+ @media (max-width: 650px) {
+    .lower__aboutus__client--text {
+       font-size: 40px;
+       margin-left: 35px;
+    }
+ 
+    .card__upper {
+       font-size: 13px;
+    }
+ 
+    .card__lower {
+       margin-left: 37px;
+       margin-right: 13px;
+    }
+ 
+    .card1 .card__lower {
+       margin-top: 0px;
+    }
+ 
+    .card2 .card__lower {
+       margin-bottom: 20px;
+    }
+ }
